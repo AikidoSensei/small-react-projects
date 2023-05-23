@@ -37,11 +37,14 @@ const reducer = (state, action) => {
       }
       return each
     })
-    return { ...state, toDo: newItems }
+    return { ...state, toDo: newItems, setShowModal: true, modalContent:'Task Completed' }
   }
   if (action.type === 'CLEAR_ALL') {
     console.log(state)
     return { toDo: [], setShowModal: false, modalContent: '' }
+  }
+  if (action.type === 'CLOSE_MODAL') {
+    return {...state, setShowModal: false}
   }
 }
 const defaultState = {
@@ -60,13 +63,16 @@ function App() {
     setTodo('')
     console.log(state)
   }
+  const closeModal = ()=>{
+    dispatch({type: 'CLOSE_MODAL'})
+  }
 
   return (
     <div className='App'>
       <main className='container h-screen flex items-center justify-center backdrop-blur'>
         <section className='to-do-container bg-black/20 w-auto h-auto py-5 px-5 rounded-xl backdrop-blur-sm shadow-2xl relative'>
           {state.setShowModal && (
-            <Modal closeModal={state.setShowModal} show={state.modalContent} />
+            <Modal closeModal={closeModal} show={state.modalContent} />
           )}
           <div className='input-container space-x-[2rem] w-auto'>
             <input
@@ -123,6 +129,7 @@ function App() {
           >
             clear all
           </button>
+          <h1 className='font-segoe text-black/30 text-2xl text-right'>To-do</h1>
         </section>
       </main>
     </div>
