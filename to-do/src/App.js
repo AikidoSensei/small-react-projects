@@ -46,7 +46,26 @@ const reducer = (state, action) => {
   if (action.type === 'CLOSE_MODAL') {
     return {...state, setShowModal: false}
   }
+  if (action.type === 'EMPTY_VALUE') {
+    return {...state, setShowModal:true, modalContent: 'Input can not be empty'}
+  }
+  if (action.type === 'EDIT') {
+       const removeList = state.toDo.filter((each) => {
+      if (action.payload !== each.id) {
+
+        console.log(action.edit)
+        return each
+      }
+    })
+    return {
+      ...state,
+      toDo: removeList,
+      setShowModal: true,
+      modalContent: 'Edit Item',
+    }
+  }
 }
+
 const defaultState = {
   toDo: [],
   setShowModal: false,
@@ -54,27 +73,32 @@ const defaultState = {
 }
 
 function App() {
+
   const [todo, setTodo] = useState('')
   const [state, dispatch] = useReducer(reducer, defaultState)
-
+  
   const handleAdd = () => {
-    const newItem = { id: new Date().getTime().toString(), todo, strike: false }
+    if (todo) {
+      const newItem = { id: new Date().getTime().toString(), todo, strike: false }
     dispatch({ type: 'ADD_ITEM', payload: newItem })
     setTodo('')
-    console.log(state)
+    }
+    else{dispatch({type: 'EMPTY_VALUE'})}
   }
   const closeModal = ()=>{
     dispatch({type: 'CLOSE_MODAL'})
   }
-
   return (
     <div className='App'>
-      <main className='container h-screen flex items-center justify-center backdrop-blur'>
-        <section className='to-do-container bg-black/20 w-auto h-auto py-5 px-5 rounded-xl backdrop-blur-sm shadow-2xl relative'>
-          {state.setShowModal && (
-            <Modal closeModal={closeModal} show={state.modalContent} />
-          )}
-          <div className='input-container space-x-[2rem] w-auto'>
+      <main
+        className='container h-screen flex align-top
+       justify-center backdrop-blur '
+      >
+        {state.setShowModal && (
+          <Modal closeModal={closeModal} show={state.modalContent} />
+        )}
+        <section className='to-do-container bg-black/20 w-auto h-auto py-5 px-5 rounded-xl backdrop-blur-sm shadow-2xl absolute top-24'>
+          <div className='input-container space-x-[1rem] w-auto'>
             <input
               type='text'
               className=' px-3 w-80 h-8 rounded border-none outline-none bg-white/900 font-segoe'
@@ -90,11 +114,25 @@ function App() {
               <i className='fas fa-plus' />
             </button>
           </div>
-          <ul className='list-container list-none px-0'>
+
+          <button
+            onClick={() => {
+              dispatch({ type: 'CLEAR_ALL' })
+            }}
+            className='bg-red-500 mt-4 px-4 py-1 rounded-xl ml-32 text-white font-comic'
+          >
+            clear all
+          </button>
+          <h1 className='font-segoe text-black/30 text-2xl text-right'>
+            To-do
+          </h1>
+        </section>
+        <div className='absolute top-72'>
+          <ul className='list-container list-none px-0 w-full'>
             {state.toDo.map((each) => {
               const { id, todo } = each
               return (
-                <li className='w-inherit  bg-white h-10 flex items-center justify-between mt-3  px-4'>
+                <li className='w-92 space-x-52 bg-white h-10 flex items-center justify-between mt-3 px-4'>
                   <h2
                     className={
                       each.strike ? 'font-comic line-through' : 'font-comic'
@@ -103,7 +141,13 @@ function App() {
                     {todo}
                   </h2>
                   <div className='space-x-5'>
-                    <i className='fas fa-edit text-yellow-400 cursor-pointer' />
+                    <i
+                      onClick={() => {
+                        dispatch({ type: 'EDIT', payload: id })
+                        setTodo(todo)
+                      }}
+                      className='fas fa-edit text-yellow-400 cursor-pointer'
+                    />
                     <i
                       onClick={() => {
                         dispatch({ type: 'COMPLETED', payload: id })
@@ -121,16 +165,7 @@ function App() {
               )
             })}
           </ul>
-          <button
-            onClick={() => {
-              dispatch({ type: 'CLEAR_ALL' })
-            }}
-            className='bg-red-500 mt-4 px-4 py-1 rounded-xl ml-32 text-white font-comic'
-          >
-            clear all
-          </button>
-          <h1 className='font-segoe text-black/30 text-2xl text-right'>To-do</h1>
-        </section>
+        </div>
       </main>
     </div>
   )
