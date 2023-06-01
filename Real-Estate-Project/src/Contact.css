@@ -1,0 +1,98 @@
+.contact-container{
+ /* background-color: brown; */
+ display:flex;
+ justify-content: center;
+ gap:10rem;
+ padding:5rem;
+}
+.right-contact{
+ min-width:20rem;
+ max-width: 20rem;
+ height: 25rem;
+ overflow: hidden;
+ border-radius: 15rem 15rem 0 0;
+}
+.right-contact > img{
+ width:110%;
+ height: 110%;
+}
+.c-container{
+ width:100%;
+ height: auto;
+ margin:1rem 0rem;
+ padding:1rem 0rem;
+ display:grid;
+ grid-template-columns: 1fr 1fr;
+ gap:1.2rem 2rem;
+}
+.contact{
+ width:20rem;
+ padding:0.5rem 0.5rem;
+ border-radius: 10px;
+ transition: 0.2s all ease-in;
+ cursor: pointer;
+}
+.contact:hover{
+ scale:1.045;
+ box-shadow: 0 3px 20px rgba(170, 170, 255, 0.699)
+}
+.contact>div{
+ display:flex;
+ padding-bottom:0.5rem
+}
+.contact>div .logo-btn{
+ margin-right: 1rem;
+}
+.f-detail > h4{
+ color:var(--primary);
+ font-size: 10pt;
+ font-weight: 800;
+}
+.f-detail > p{
+ color:rgba(0, 0, 0, 0.31);
+ font-size: 9pt;
+}
+.contact-btn{
+ padding:0.5rem 3.5rem;
+ background-color: rgba(170, 170, 255, 0.452);
+ border:none;
+ width:100%;
+ border-radius: 5px;
+ color:royalblue;
+ font-weight: 700;
+ transition: 0.2s all ease-in;
+}
+.contact-btn:hover{
+ cursor:pointer;
+ background-color: royalblue;
+ color:gainsboro
+}
+@media screen and (max-width:765px) {
+ .contact-container{
+  display:flex;
+  flex-direction: column;
+  gap:1.5rem;
+  padding:0 1.1rem;
+  margin-bottom: 3rem;
+ }
+ .c-container{
+  display:flex;
+  flex-direction: column;
+ }
+ .right-contact{
+  width:100%
+ }
+}
+@media screen and (max-width:1024px){
+ .contact-container{
+  display:flex;
+  flex-direction: column;
+  gap:1.5rem;
+  padding:0 1.1rem;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+ }
+ .right-contact{
+  margin-left: 1rem;
+ }
+}

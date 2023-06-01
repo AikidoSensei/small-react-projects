@@ -1,0 +1,31 @@
+.companies-container{
+ background-color: white;
+ display:flex;
+ justify-content: center;
+ max-width: 100%;
+ margin-bottom:3rem;
+}
+.companies{
+ display:flex;
+ justify-content: center;
+ gap:6rem;
+ padding:3rem
+}
+.companies img{
+ height: 6rem;
+}
+@media  screen and (max-width:768px) {
+ .companies{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+ }
+ .companies img{
+ height: 3rem;
+}
+}
+@media  screen and (max-width:1024px){
+ .companies{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+ }
+}

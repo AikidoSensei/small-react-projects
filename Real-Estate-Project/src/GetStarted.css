@@ -1,0 +1,30 @@
+.started-container{
+ display:flex;
+ justify-content: center;
+}
+.started{
+ display:flex;
+ flex-direction: column;
+ width:80%;
+ background-color: royalblue;
+ border:solid 5px rgb(155, 175, 236);
+ text-align: center;
+ padding:2rem 2rem;
+ gap:2rem;
+ border-radius: 10px;
+ letter-spacing: 1px;
+}
+.started > h2{
+ color:white;
+}
+.started > h5{
+ color:rgba(255, 255, 255, 0.582)
+}
+.started-btn{
+ width:6rem;
+ background-color: rgb(96, 133, 241) ;
+ padding:0.5rem 0rem;
+ border: solid 2px white;
+ border-radius:10px;
+ color:white
+}

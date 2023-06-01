@@ -1,0 +1,136 @@
+.value-container{
+ display:flex;
+ justify-content: center;
+ gap:14rem;
+ padding:5rem;
+ height:30rem ;
+}
+
+.left-value{
+ min-width:20rem;
+ max-width: 20rem;
+ height:25rem;
+ overflow: hidden;
+ border:6px solid rgba(0, 0, 0, 0.541);
+ border-radius: 15rem 15rem 0 0;
+}
+.left-value>img{
+ width:110%;
+ height:110%;
+}
+.value-text > h3{
+  color:#ff922d
+}
+.value-text > h2{
+ color:var(--primary)
+}
+.value-text > p{
+  color:rgba(0, 0, 0, 0.3);
+}
+.right-value{
+ display:flex;
+ flex-direction: column;
+}
+.acordion{
+ background-color: white;
+ max-width: 100%;
+ padding:0.5rem 1rem;
+ border-radius: 10px;
+ box-shadow: 0 10px 20px rgba(3, 35, 48, 0.205);
+ margin-top: 2rem;
+ height: 3rem;
+ overflow: hidden;
+ transition:0.3s ease-in
+}
+.show-acordion{
+ height:10rem;
+ overflow:auto;
+ overflow-y: hidden;
+}
+.acordion-header{
+ display:flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 1.3rem;
+}
+.acordion-header h4{
+ color:var(--primary)
+}
+.logo-btn{
+ width:2rem;
+ height:2rem;
+ background-color: rgba(170, 170, 255, 0.452);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 5pc;
+ cursor:pointer;
+}
+
+.acordion > p{
+ font-size: 10pt;
+ color: rgba(0, 0, 0, 0.31);
+ letter-spacing: 1px;
+}
+@media screen and (max-width:765px) {
+.value-container{
+  display:flex;
+  flex-direction: column-reverse;
+  padding:0 10rem;
+  gap:1.5rem;
+  width: 100%;
+  height: auto;
+  margin-bottom: 3rem;
+  }
+.right-container{
+    display: flex;
+    flex-direction: column;
+    max-width:fit-content;
+  }
+.acordion-container{
+    display:flex;
+    flex-direction: column;
+    flex-flow:column-reverse;
+    padding:0 1rem;
+    max-width: 100%;
+  }
+.show-acordion{
+    height:10rem;
+  }
+.left-value{
+    width:90%;
+  }
+.acordion-header h4{
+ color:var(--primary);
+ font-size: 9pt;
+}
+}
+@media screen and (max-width:1250px){
+ .value-container{
+  display:flex;
+  flex-direction: column-reverse;
+  padding:0 0.1rem;
+  gap:5rem;
+  height: auto;
+  margin-top: 5rem;
+  text-align: center;
+  }
+ .acordion-container{
+  display:flex;
+  flex-direction: column;
+  flex-flow:column-reverse;
+  max-width:30rem;
+  }
+  .left-value{
+  display:none
+  }
+  .right-value{
+    width:100%
+  }
+  .right-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+}
